@@ -3,6 +3,7 @@ import models.Account;
 import models.Accountop;
 import models.Personx;
 
+import java.sql.*;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -44,5 +45,11 @@ public class Main {
         userService.updateUser(user);
 
          */
+    }
+
+    public static void test() throws SQLException {
+        Connection connection = DriverManager.getConnection("");
+        PreparedStatement statement = connection.prepareStatement("?");
+        statement.setInt(1,1);
     }
 }
