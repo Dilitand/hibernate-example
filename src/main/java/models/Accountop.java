@@ -13,9 +13,8 @@ public class Accountop {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "ACCOUNT_ID",referencedColumnName = "ID")
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
     private Account account;
-
 
     public Accountop(){};
 

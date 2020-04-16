@@ -16,9 +16,8 @@ public class Account {
     @JoinColumn(name = "CLIENT_ID",referencedColumnName = "id")
     private Personx person;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Accountop> accountops = new ArrayList<>();
-
 
     public Account() {
 

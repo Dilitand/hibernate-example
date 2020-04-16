@@ -15,9 +15,9 @@ public class Main {
         Account account = new Account("1000");
         Accountop accountop = new Accountop(1000.12D,new Date());
 
-        accountop.setAccount(account);
+        //accountop.setAccount(account);
         account.addAccountOp(accountop);
-        account.setPerson(person);
+        //account.setPerson(person);
         person.addAcc(account);
 
         dao.save(person);
