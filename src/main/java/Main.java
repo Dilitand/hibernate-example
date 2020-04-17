@@ -1,14 +1,34 @@
+import config.MyConfig;
 import dao.Dao;
 import models.Account;
 import models.Accountop;
 import models.Personx;
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
+import org.h2.engine.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import java.sql.*;
 import java.util.Arrays;
 import java.util.Date;
 
+
+
 public class Main {
+
+
     public static void main(String[] args) {
+
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(MyConfig.class);
+
+        var session = context.getBean("sessionFactoryBean");
+        System.out.println(session.toString());
+
+        /*
         //spring
         Dao dao = new Dao();
         Personx person = new Personx("dimas");
@@ -23,6 +43,8 @@ public class Main {
 
         dao.save(person);
 
+        System.out.println(dao.getListFromQuery("FROM Personx"));
+        */
         /*
         Account account = new Account("1000");
         account.setPerson(person);
@@ -30,7 +52,6 @@ public class Main {
         dao.update(person);
          */
 
-        System.out.println(dao.getListFromQuery("FROM Personx"));
 
         /*
         UserService userService = new UserService();
@@ -52,4 +73,6 @@ public class Main {
         PreparedStatement statement = connection.prepareStatement("?");
         statement.setInt(1,1);
     }
+
+
 }

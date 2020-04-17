@@ -1,7 +1,9 @@
 package config;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -13,7 +15,6 @@ import java.util.Properties;
 //http://samolisov.blogspot.com/2009/06/hibernate-spring.html
 
 @Configuration
-@EnableTransactionManagement
 public class MyConfig {
 
     @Bean
@@ -28,34 +29,11 @@ public class MyConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        Properties properties = new Properties();
-        properties.setProperty()
-
-        sessionFactory.setDataSource(restDataSource());
-        sessionFactory.setPackagesToScan(
-                new String[] { "org.baeldung.spring.persistence.model" });
-        sessionFactory.setHibernateProperties(hibernateProperties());
-
-        return sessionFactory;
+    public LocalSessionFactoryBean sessionFactoryBean(DataSource dataSource){
+        final LocalSessionFactoryBean factoryBean =
+                new LocalSessionFactoryBean();
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setPackagesToScan("models");
+        return factoryBean;
     }
-
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    Properties hibernateProperties() {
-        return new Properties() {
-            {
-                setProperty("hibernate.hbm2ddl.auto",
-                        env.getProperty("hibernate.hbm2ddl.auto"));
-                setProperty("hibernate.dialect",
-                        env.getProperty("hibernate.dialect"));
-                setProperty("hibernate.globally_quoted_identifiers",
-                        "true");
-            }
-        };
 }
