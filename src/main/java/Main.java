@@ -22,13 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(MyConfig.class);
-
-        var session = context.getBean("sessionFactoryBean");
-        System.out.println(session.toString());
-
-        /*
         //spring
         Dao dao = new Dao();
         Personx person = new Personx("dimas");
@@ -44,7 +37,7 @@ public class Main {
         dao.save(person);
 
         System.out.println(dao.getListFromQuery("FROM Personx"));
-        */
+
         /*
         Account account = new Account("1000");
         account.setPerson(person);
