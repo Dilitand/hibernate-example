@@ -1,8 +1,7 @@
 package springPackage.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import springPackage.models.Personx;
@@ -10,10 +9,13 @@ import springPackage.models.Personx;
 import java.util.Collection;
 import java.util.List;
 
+@Repository
+@Transactional(readOnly=false)
 public class RoleStorage implements RoleDAO {
 
     private HibernateTemplate hibernateTemplate;
 
+    @Autowired
     public RoleStorage(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
     }
@@ -24,7 +26,6 @@ public class RoleStorage implements RoleDAO {
     }
 
     @Override
-    @Transactional
     public int add(Personx user) {
         return (int) this.hibernateTemplate.save(user);
     }

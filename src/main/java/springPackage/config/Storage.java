@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-
 public interface Storage<T> {
 
     public Collection<T> values();

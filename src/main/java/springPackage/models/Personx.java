@@ -17,6 +17,7 @@ public class Personx {
     String name;
 
     @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
+    @Transient
     List<Account> accountList = new ArrayList<>();
 
 
