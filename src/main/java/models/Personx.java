@@ -54,4 +54,13 @@ public class Personx {
     public void setAccountList(List<Account> accountList) {
         this.accountList = accountList;
     }
+
+    @Override
+    public String toString() {
+        return "Personx{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", accountList=" + accountList +
+                '}';
+    }
 }
