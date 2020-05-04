@@ -1,4 +1,5 @@
 import config.MyConfig;
+import dao.Dao;
 import dao.DaoSpringIpl;
 import models.Account;
 import models.Accountop;
@@ -16,10 +17,11 @@ public class Main {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MyConfig.class);
 
-        DaoSpringIpl springIpl = context.getBean("daospring", DaoSpringIpl.class);
+        //DaoSpringIpl springIpl = context.getBean("daospring", DaoSpringIpl.class);
+        Dao springIpl = context.getBean("daospring", Dao.class);
 
-        Personx personx = makePersonx();
-        springIpl.save(personx);
+        //Personx personx = makePersonx();
+        //springIpl.save(personx);
 
         List list = springIpl.getListFromQuery("FROM Personx");
         System.out.println(list);

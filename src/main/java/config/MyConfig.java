@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -17,13 +19,14 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan("dao")
+@EnableTransactionManagement
 public class MyConfig {
 
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource basicDataSource = new DriverManagerDataSource();
         basicDataSource.setDriverClassName("org.h2.Driver");
-        basicDataSource.setUrl("jdbc:h2:~/test2");
+        basicDataSource.setUrl("jdbc:h2:~/test4");
         basicDataSource.setUsername("sa");
         basicDataSource.setPassword("");
 
